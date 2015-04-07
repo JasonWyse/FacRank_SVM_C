@@ -1,0 +1,8 @@
+pars
+round	threshold
+
+<open file 'java -jar H:\zhangyaogong\letor40\baselines\RankBoost\source_code\RankLib-v2.1\bin\RankLib.jar -train H:\zhangyaogong\letor40\datasets\OHSUMED\Fold1\train.txt -ranker 2 -save H:\zhangyaogong\letor40\baselines\RankBoost\data\model -round 1 -tc 255', mode 'r' at 0x000000000230B5D0>
+<open file 'java -jar H:\zhangyaogong\letor40\baselines\RankBoost\source_code\RankLib-v2.1\bin\RankLib.jar -load H:\zhangyaogong\letor40\baselines\RankBoost\data\model -rank H:\zhangyaogong\letor40\datasets\OHSUMED\Fold1\vali.txt -score H:\zhangyaogong\letor40\baselines\RankBoost\data\score', mode 'r' at 0x000000000230B5D0>
+<open file 'java -jar H:\zhangyaogong\letor40\baselines\RankBoost\source_code\RankLib-v2.1\bin\RankLib.jar -train H:\zhangyaogong\letor40\datasets\OHSUMED\Fold1\train.txt -ranker 2 -save H:\zhangyaogong\letor40\baselines\RankBoost\data\model -round 21 -tc 255', mode 'r' at 0x000000000230B660>
+<open file 'java -jar H:\zhangyaogong\letor40\baselines\RankBoost\source_code\RankLib-v2.1\bin\RankLib.jar -load H:\zhangyaogong\letor40\baselines\RankBoost\data\model -rank H:\zhangyaogong\letor40\datasets\OHSUMED\Fold1\vali.txt -score H:\zhangyaogong\letor40\baselines\RankBoost\data\score', mode 'r' at 0x000000000230B660>
+<open file 'java -jar H:\zhangyaogong\letor40\baselines\RankBoost\source_code\RankLib-v2.1\bin\RankLib.jar -train H:\zhangyaogong\letor40\datasets\OHSUMED\Fold1\train.txt -ranker 2 -save H:\zhangyaogong\letor40\baselines\RankBoost\data\model -round 41 -tc 255', mode 'r' at 0x000000000230B6F0>

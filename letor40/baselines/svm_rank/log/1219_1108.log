@@ -1,0 +1,5 @@
+pars
+c
+
+<open file 'G:\benchmark\learning_to_rank\letor40\baselines\svm_struct\source_code\svm_rank_learn-c 0.000010 -e 0.001 -l 1 G:\benchmark\learning_to_rank\letor40\datasets\Mq2007\Fold1\train.txt G:\benchmark\learning_to_rank\letor40\baselines\svm_struct\data\model', mode 'r' at 0x0000000002336300>
+<open file 'G:\benchmark\learning_to_rank\letor40\baselines\svm_struct\source_code\svm_rank_classify G:\benchmark\learning_to_rank\letor40\datasets\Mq2007\Fold1\vali.txt G:\benchmark\learning_to_rank\letor40\baselines\svm_struct\data\model G:\benchmark\learning_to_rank\letor40\baselines\svm_struct\data\score', mode 'r' at 0x0000000002336300>

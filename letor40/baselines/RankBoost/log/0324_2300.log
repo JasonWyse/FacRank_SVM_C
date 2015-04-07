@@ -1,0 +1,5 @@
+pars
+round	threshold
+
+<open file 'java -jar G:\yaogong\letor40\baselines\RankBoost\source_code\RankLib-v2.1\bin\RankLib.jar -train G:\yaogong\letor40\datasets\OHSUMED\Fold1\train.txt -ranker 2 -save G:\yaogong\letor40\baselines\RankBoost\data\model -round 1 -tc 255', mode 'r' at 0x00000000022FD300>
+<open file 'java -jar G:\yaogong\letor40\baselines\RankBoost\source_code\RankLib-v2.1\bin\RankLib.jar -load G:\yaogong\letor40\baselines\RankBoost\data\model -rank G:\yaogong\letor40\datasets\OHSUMED\Fold1\vali.txt -score G:\yaogong\letor40\baselines\RankBoost\data\score', mode 'r' at 0x00000000022FD300>

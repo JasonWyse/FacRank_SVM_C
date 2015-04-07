@@ -1,0 +1,222 @@
+import os
+import commands
+import subprocess
+import sys
+#import path
+import logging
+import mysql
+from path import PathManager
+import time
+
+
+#tuning parameter's process
+def tune_paras(vali,score,msr,dataset):
+	'''
+	eval_msr={'MAP':'FoldMap','NDCG':'FoldNdcg'}
+	fold_msr=eval_msr.get(msr)
+	'''
+	hsQueryDocLabelScore=evaluate.ReadInputFiles(vali, score,dataset)
+	hsQueryEval = evaluate.EvalQuery(hsQueryDocLabelScore)
+	if msr == 'MAP':
+		msr_value=evaluate.FoldMap(hsQueryEval)
+	elif msr == 'NDCG':
+		msr_value=evaluate.FoldNdcg(hsQueryEval)
+	return msr_value
+
+def results(subset,score,p,q,dataset):	#p:'fold%d' q:'['test','vali','train']'
+	hsQueryDocLabelScore=evaluate.ReadInputFiles(subset, score,dataset)
+	hsQueryEval = evaluate.EvalQuery(hsQueryDocLabelScore)
+	PrecAtN[p+q]=evaluate.FoldPrecAtN(hsQueryEval)
+	Map[p+q]=evaluate.FoldMap(hsQueryEval)
+	Ndcg[p+q]=evaluate.FoldNdcg(hsQueryEval)
+	MeanNdcg[p+q]=evaluate.FoldMeanNdcg(hsQueryEval)
+	return
+	
+def validation(msr,dataset):
+	pth_data=p.getPath('path_data')
+	print pth_data
+	pth_dataset=p.getPath('path_dataset')# return the directory of the current dataset we focus on(by type the choice on terminal)
+	score=os.path.join(pth_data,'score')
+	model=os.path.join(pth_data,'model')
+	# 'temp_pth_dataset' keeps all the five folds ,in each fold, the corresponding best model or best parameters files stay
+	temp_pth_dataset=pth_data
+	if not os.path.exists(temp_pth_dataset):
+		os.mkdir(temp_pth_dataset)
+	# tune the parameters
+	for fold_number in [1,2,3,4,5]:
+		train= os.path.join(pth_dataset,'Fold%d'%fold_number,'train.txt')	
+		test = os.path.join(pth_dataset,'Fold%d'%fold_number,'test.txt')
+		vali = os.path.join(pth_dataset,'Fold%d'%fold_number,'vali.txt')		
+		# 'temp_pth_fold' its parent directory is 'temp_pth_dataset' 
+		temp_pth_fold=os.path.join(temp_pth_dataset,'Fold%d'%fold_number)
+		if not os.path.exists(temp_pth_fold):
+			os.mkdir(temp_pth_fold)
+		final_best_model = os.path.join(temp_pth_fold,'final_model')
+		#perfms is the value of map or ndcg; Perfms is the best performance, used to choose the best paras
+		Perfms=0
+		
+		################################different parts for distinct algorithm###################################################	
+		##-c 50 -C 1 -e 1e-6 -s 7 -b 10 -i 100
+		for ite in[100,200,300,500,1000]:
+			for eta in[1e-6,1e-7,1e-8]:#[1e-6,1e-6,1e-6,1e-6,1e-6,1e-6,]
+				for col_size in[10,20,50,100,200]:#[50,100,200,500,1000,5000]
+					for c in[0.0001,0.001,0.01]:#[0.0001,0.001,0.01,0.1,1,10,100]
+						for batch_size in[10,50,100]:#[10,20,50,100,200]
+							#for rate in [0.00001,0.0001,0.001,0.01]:
+							#use the "train.txt" file to learn the model
+							##-c 50 -C 1 -e 1e-6 -b 10 -i 100 train.txt
+							print os.popen(command_train%(col_size,c,eta,batch_size,ite,train,model))			
+													
+							#use the "vali.txt" file to get the corresponding score using the learned model
+							print os.popen(command_test%(vali,model,score))
+							#use msr('NDCG' or 'MAP') as measure to get the performance of the model in 'vali.txt' file
+							perfms=tune_paras(vali,score,msr,dataset)
+							if perfms> Perfms:
+								Perfms=perfms
+								_C=c
+								_ite = ite
+								_eta = eta
+								_col_size = col_size
+								_batch_size = batch_size
+								
+								#Rate=rate
+								if os.path.isfile(model): 
+									open(final_best_model,"wb").write(open(model,"rb").read()) 				
+		F_pars=open(os.path.join(temp_pth_fold,'bestPars'),'w')		
+		F_pars.write('Fold%d\nC:%s\n'%(fold_number,_C))
+		F_pars.write('\n ite:%s\n'%(_ite))
+		F_pars.write('\n eta:%s\n'%(_eta))
+		F_pars.write('\n col_size:%s\n'%(_col_size))
+		F_pars.write('\n batch_size:%s\n'%(_batch_size))
+		
+		###########################################################################################################################
+		#save the best performance 
+		fold_index='Fold%d'%fold_number		
+		#ipos=0
+		Dict={'test':test,'vali':vali,'train':train}#value 'test', stands for full path of test.txt file,
+		#best_model=os.path.join(temp_pth_fold,'best_model')
+		# print best_model
+		# print os.popen(command_train%(C,train,best_model))
+		for subset_name in ['test','vali','train']:
+		#best_score is the file to keep the score of test.txt(vali.txt train.txt)by the same 'final_best_model' file, 
+			best_score=os.path.join(temp_pth_fold,subset_name+'_score')			
+			print os.popen(command_test%(Dict[subset_name],final_best_model,best_score))			
+			results(Dict.get(subset_name),best_score,fold_index,subset_name,dataset)			
+		f_t = time.strftime('%m%d_%H%M',time.localtime(time.time()))
+		print 'Fold_%s finish at %s\t'%(fold_number,f_t)
+	F_pars.close()
+	return
+
+def OutputFiles():
+	#log('begin to write results into files')
+	bstEvl=os.path.join(pth_eval,'%s_%s_%s'%(msr,dataset,algthm_name))
+	#output the baselines to 'bstEvl' file		
+	try:
+		FOUT=open(bstEvl,'w')
+	finally:
+		if not FOUT:
+			print 'Invalid command line.\n'
+			print 'Open \$fnOut\' failed.\n'
+			FOUT.close()
+			exit -2
+	FOUT.write('Validation measure: msr_%s\nDataset: %s\nAlgorithm: %s\n'%(msr,dataset,algthm_name))
+
+	format={'test':'\nperformance on testing set\n','vali':'\nPerformance on validation set\n','train':'\nPerformance on training set\n'}
+
+	for subset_name in ['test','vali','train']:
+		FOUT.write(format[subset_name])
+		FOUT.write('Folds\tNDCG@1\tNDCG@2\tNDCG@3\tNDCG@4\tNDCG@5\tNDCG@6\tNDCG@7\tNDCG@8\tNDCG@9\tNDCG@10\tMeanNDCG\n')
+		for fold_number in [1,2,3,4,5]:
+			FOUT.write('Fold%d\t'%fold_number)
+			ipos1='Fold%d'%fold_number
+			NDCG=Ndcg[ipos1+subset_name]
+			for i in range(iMaxPosition):
+				FOUT.write('%.4f\t'%NDCG[i])
+			FOUT.write('%.4f\t\n'%(MeanNdcg[ipos1+subset_name]))
+			
+		FOUT.write('\nFolds\tP@1\tP@2\tP@3\tP@4\tP@5\tP@6\tP@7\tP@8\tP@9\tP@10\tMAP\n')
+		for fold_number in [1,2,3,4,5]:
+			FOUT.write('Fold%d\t'%fold_number)
+			ipos1='Fold%d'%fold_number
+			PREC=PrecAtN[ipos1+subset_name]
+			for i in range(iMaxPosition):
+				FOUT.write('%.4f\t'%PREC[i])
+			FOUT.write('%.4f\t\n'%Map[ipos1+subset_name])
+	return
+		
+DT={'0':'Mq2007','1':'Mq2008','2':'OHSUMED'}
+Msr={'0':'MAP','1':'NDCG'}
+#ipos2={'0':'test','1':'vali','2':'train'}
+iMaxPosition=10
+
+dataset=DT.get(raw_input('pls choose dataset(0:Mq2007,1:Mq2008,2:OHSUMED):\n'))
+msr=Msr.get(raw_input('pls choose measure (0:MAP,1:NDCG):\n'))
+
+learn_tools_name='FacRankSVM_learn'
+classify_tools_name='FacRankSVM_predit'
+algthm_name='FacSVM_Rank'
+	
+p=PathManager(dataset,algthm_name)
+
+pth_bslns=p.getPath('path_baselines')
+pth_evlt=p.getPath('path_evaluation')
+pth_dataset=p.getPath('path_dataset')
+pth_data=p.getPath('path_data')
+
+tls_learn=os.path.join(p.getPath('path_code'),learn_tools_name)
+tls_classify=os.path.join(p.getPath('path_code'),classify_tools_name)
+pth_eval=p.getPath('path_eval')
+pth_log=p.getPath('path_log')
+
+#import evaluate.py
+if not pth_evlt in sys.path:
+    sys.path.append(pth_evlt)
+if not 'evaluate' in sys.modules:
+    evaluate = __import__('evaluate')
+else:
+    eval('import evaluate')
+    evaluate= eval('reload(evaluate)')
+
+Map={}
+PrecAtN={}
+MeanNdcg={}
+Ndcg={}
+
+'''command_train=tls+' train -data %s -model %s -round %d -measure '+str(msr)
+command_test=tls+' test -data %s -model %s -output %s -round %d'''
+#-c 50 -C 1 -e 1e-6 -s 7 -b 10 -i 100 train.txt
+command_train=tls_learn+' -c %f -C %f -e %f -b %d -i %d %s %s'#-c %f -e 0.001 -l 1 %s %s
+#vali.txt train.txt.model result.txt
+command_test=tls_classify+' %s %s %s'
+#message to be logged 	
+
+
+	
+
+try:
+	#if LOGFILENAME is None:
+	t = time.strftime('%m%d_%H%M',time.localtime(time.time()))
+	LOGFILENAME=os.path.join(pth_log,'%s.log'%t)
+	F_log=open(LOGFILENAME,'w')
+finally:
+	if not F_log:
+		print 'Invalid command line.\n'
+		print 'Open \flog\' failed.\n'
+		F_log.close()
+		exit -2
+saveout=sys.stdout
+sys.stdout=F_log
+	
+
+print 'pars\n%s\n'%('c')
+validation(msr,dataset)
+
+t_OutputFile = time.strftime('%m%d_%H%M',time.localtime(time.time()))
+print '\nat %s begin to write into files..\t'%(t_OutputFile)
+OutputFiles()
+
+sys.stdout=saveout
+F_log.close()
+
+
+#OutputDatabase()

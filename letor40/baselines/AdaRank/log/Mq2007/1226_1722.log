@@ -1,0 +1,8 @@
+[12-26 17:22:15]: training starts
+[12-26 17:22:15]: Fold1 starts training
+[12-26 17:22:15]: ROUND 10
+<open file 'G:\benchmark\learning_to_rank\letor40\baselines\AdaRank\source_code\AdaRank_CSharp.exe train -data G:\benchmark\learning_to_rank\letor40\datasets\Mq2007\Fold1\train.txt -model G:\benchmark\learning_to_rank\letor40\baselines\AdaRank\data\Mq2007\model -round 10 -measure MAP', mode 'r' at 0x00000000022FE300>
+<open file 'G:\benchmark\learning_to_rank\letor40\baselines\AdaRank\source_code\AdaRank_CSharp.exe test -data G:\benchmark\learning_to_rank\letor40\datasets\Mq2007\Fold1\vali.txt -model G:\benchmark\learning_to_rank\letor40\baselines\AdaRank\data\Mq2007\model -output G:\benchmark\learning_to_rank\letor40\baselines\AdaRank\data\Mq2007\score -round 1', mode 'r' at 0x00000000022FE300>
+<open file 'G:\benchmark\learning_to_rank\letor40\baselines\AdaRank\source_code\AdaRank_CSharp.exe train -data G:\benchmark\learning_to_rank\letor40\datasets\Mq2007\Fold1\train.txt -model G:\benchmark\learning_to_rank\letor40\baselines\AdaRank\data\Mq2007\Fold1\model -round 1 -measure MAP', mode 'r' at 0x00000000022FE300>
+[12-26 17:22:23]: Fold1 ends training
+[12-26 17:22:23]: Fold1 starts testing

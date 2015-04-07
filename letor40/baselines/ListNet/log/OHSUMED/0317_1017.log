@@ -1,0 +1,5 @@
+G:\benchmark\learning_to_rank\letor40\datasets\OHSUMED
+[03-17 10:17:05]: training starts
+[03-17 10:17:05]: Fold1 starts training
+<open file 'java -jar G:\benchmark\learning_to_rank\letor40\baselines\ListNet\source_code\RankLib-v2.1\bin\RankLib.jar -train G:\benchmark\learning_to_rank\letor40\datasets\OHSUMED\Fold1\train.txt -ranker 7 -save G:\benchmark\learning_to_rank\letor40\baselines\ListNet\data\OHSUMED\model -epoch 200 -lr 0.000010', mode 'r' at 0x000000000233E270>
+<open file 'java -jar G:\benchmark\learning_to_rank\letor40\baselines\ListNet\source_code\RankLib-v2.1\bin\RankLib.jar -load G:\benchmark\learning_to_rank\letor40\baselines\ListNet\data\OHSUMED\model -rank G:\benchmark\learning_to_rank\letor40\datasets\OHSUMED\Fold1\vali.txt -score G:\benchmark\learning_to_rank\letor40\baselines\ListNet\data\OHSUMED\score', mode 'r' at 0x000000000233E270>

@@ -1,0 +1,8 @@
+[03-17 15:25:13]: training starts
+[03-17 15:25:13]: Fold1 starts training
+[03-17 15:25:13]: ROUND 300
+<open file 'G:\benchmark\learning_to_rank\letor40\baselines\AdaRank\source_code\AdaRank_CSharp.exe train -data G:\benchmark\learning_to_rank\letor40\datasets\OHSUMED\Fold1\train.txt -model G:\benchmark\learning_to_rank\letor40\baselines\AdaRank\data\OHSUMED\model -round 300 -measure MAP', mode 'r' at 0x00000000024A5270>
+<open file 'G:\benchmark\learning_to_rank\letor40\baselines\AdaRank\source_code\AdaRank_CSharp.exe test -data G:\benchmark\learning_to_rank\letor40\datasets\OHSUMED\Fold1\vali.txt -model G:\benchmark\learning_to_rank\letor40\baselines\AdaRank\data\OHSUMED\model -output G:\benchmark\learning_to_rank\letor40\baselines\AdaRank\data\OHSUMED\score -round 1', mode 'r' at 0x00000000024A5270>
+Error to parse fnFeature at line1:
+lnFea
+

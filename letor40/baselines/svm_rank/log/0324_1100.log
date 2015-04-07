@@ -1,0 +1,28 @@
+pars
+c
+
+<open file 'G:\yaogong\letor40\baselines\svm_rank\source_code\svm_rank_learn -c 0.000010 -e 0.001 -l 1 G:\yaogong\letor40\datasets\OHSUMED\Fold1\train.txt G:\yaogong\letor40\baselines\svm_rank\data\model', mode 'r' at 0x00000000023F2150>
+G:\yaogong\letor40\baselines\svm_rank\source_code\svm_rank_learn -c 0.000010 -e 0.001 -l 1 G:\yaogong\letor40\datasets\OHSUMED\Fold1\train.txt G:\yaogong\letor40\baselines\svm_rank\data\model
+<open file 'G:\yaogong\letor40\baselines\svm_rank\source_code\svm_rank_classify G:\yaogong\letor40\datasets\OHSUMED\Fold1\vali.txt G:\yaogong\letor40\baselines\svm_rank\data\model G:\yaogong\letor40\baselines\svm_rank\data\score', mode 'r' at 0x00000000023F2150>
+<open file 'G:\yaogong\letor40\baselines\svm_rank\source_code\svm_rank_learn -c 0.000100 -e 0.001 -l 1 G:\yaogong\letor40\datasets\OHSUMED\Fold1\train.txt G:\yaogong\letor40\baselines\svm_rank\data\model', mode 'r' at 0x00000000023F21E0>
+G:\yaogong\letor40\baselines\svm_rank\source_code\svm_rank_learn -c 0.000100 -e 0.001 -l 1 G:\yaogong\letor40\datasets\OHSUMED\Fold1\train.txt G:\yaogong\letor40\baselines\svm_rank\data\model
+<open file 'G:\yaogong\letor40\baselines\svm_rank\source_code\svm_rank_classify G:\yaogong\letor40\datasets\OHSUMED\Fold1\vali.txt G:\yaogong\letor40\baselines\svm_rank\data\model G:\yaogong\letor40\baselines\svm_rank\data\score', mode 'r' at 0x00000000023F21E0>
+<open file 'G:\yaogong\letor40\baselines\svm_rank\source_code\svm_rank_learn -c 0.001000 -e 0.001 -l 1 G:\yaogong\letor40\datasets\OHSUMED\Fold1\train.txt G:\yaogong\letor40\baselines\svm_rank\data\model', mode 'r' at 0x00000000023F2150>
+G:\yaogong\letor40\baselines\svm_rank\source_code\svm_rank_learn -c 0.001000 -e 0.001 -l 1 G:\yaogong\letor40\datasets\OHSUMED\Fold1\train.txt G:\yaogong\letor40\baselines\svm_rank\data\model
+<open file 'G:\yaogong\letor40\baselines\svm_rank\source_code\svm_rank_classify G:\yaogong\letor40\datasets\OHSUMED\Fold1\vali.txt G:\yaogong\letor40\baselines\svm_rank\data\model G:\yaogong\letor40\baselines\svm_rank\data\score', mode 'r' at 0x00000000023F2150>
+<open file 'G:\yaogong\letor40\baselines\svm_rank\source_code\svm_rank_learn -c 0.010000 -e 0.001 -l 1 G:\yaogong\letor40\datasets\OHSUMED\Fold1\train.txt G:\yaogong\letor40\baselines\svm_rank\data\model', mode 'r' at 0x00000000023F21E0>
+G:\yaogong\letor40\baselines\svm_rank\source_code\svm_rank_learn -c 0.010000 -e 0.001 -l 1 G:\yaogong\letor40\datasets\OHSUMED\Fold1\train.txt G:\yaogong\letor40\baselines\svm_rank\data\model
+<open file 'G:\yaogong\letor40\baselines\svm_rank\source_code\svm_rank_classify G:\yaogong\letor40\datasets\OHSUMED\Fold1\vali.txt G:\yaogong\letor40\baselines\svm_rank\data\model G:\yaogong\letor40\baselines\svm_rank\data\score', mode 'r' at 0x00000000023F21E0>
+<open file 'G:\yaogong\letor40\baselines\svm_rank\source_code\svm_rank_learn -c 0.100000 -e 0.001 -l 1 G:\yaogong\letor40\datasets\OHSUMED\Fold1\train.txt G:\yaogong\letor40\baselines\svm_rank\data\model', mode 'r' at 0x00000000023F2150>
+G:\yaogong\letor40\baselines\svm_rank\source_code\svm_rank_learn -c 0.100000 -e 0.001 -l 1 G:\yaogong\letor40\datasets\OHSUMED\Fold1\train.txt G:\yaogong\letor40\baselines\svm_rank\data\model
+<open file 'G:\yaogong\letor40\baselines\svm_rank\source_code\svm_rank_classify G:\yaogong\letor40\datasets\OHSUMED\Fold1\vali.txt G:\yaogong\letor40\baselines\svm_rank\data\model G:\yaogong\letor40\baselines\svm_rank\data\score', mode 'r' at 0x00000000023F2150>
+<open file 'G:\yaogong\letor40\baselines\svm_rank\source_code\svm_rank_learn -c 1.000000 -e 0.001 -l 1 G:\yaogong\letor40\datasets\OHSUMED\Fold1\train.txt G:\yaogong\letor40\baselines\svm_rank\data\model', mode 'r' at 0x00000000023F21E0>
+G:\yaogong\letor40\baselines\svm_rank\source_code\svm_rank_learn -c 1.000000 -e 0.001 -l 1 G:\yaogong\letor40\datasets\OHSUMED\Fold1\train.txt G:\yaogong\letor40\baselines\svm_rank\data\model
+<open file 'G:\yaogong\letor40\baselines\svm_rank\source_code\svm_rank_classify G:\yaogong\letor40\datasets\OHSUMED\Fold1\vali.txt G:\yaogong\letor40\baselines\svm_rank\data\model G:\yaogong\letor40\baselines\svm_rank\data\score', mode 'r' at 0x00000000023F21E0>
+<open file 'G:\yaogong\letor40\baselines\svm_rank\source_code\svm_rank_learn -c 10.000000 -e 0.001 -l 1 G:\yaogong\letor40\datasets\OHSUMED\Fold1\train.txt G:\yaogong\letor40\baselines\svm_rank\data\model', mode 'r' at 0x00000000023F2150>
+G:\yaogong\letor40\baselines\svm_rank\source_code\svm_rank_learn -c 10.000000 -e 0.001 -l 1 G:\yaogong\letor40\datasets\OHSUMED\Fold1\train.txt G:\yaogong\letor40\baselines\svm_rank\data\model
+<open file 'G:\yaogong\letor40\baselines\svm_rank\source_code\svm_rank_classify G:\yaogong\letor40\datasets\OHSUMED\Fold1\vali.txt G:\yaogong\letor40\baselines\svm_rank\data\model G:\yaogong\letor40\baselines\svm_rank\data\score', mode 'r' at 0x00000000023F2150>
+0.1
+G:\yaogong\letor40\baselines\svm_rank\data\OHSUMED\Fold1\best_model
+<open file 'G:\yaogong\letor40\baselines\svm_rank\source_code\svm_rank_learn -c 0.100000 -e 0.001 -l 1 G:\yaogong\letor40\datasets\OHSUMED\Fold1\train.txt G:\yaogong\letor40\baselines\svm_rank\data\OHSUMED\Fold1\best_model', mode 'r' at 0x00000000023F2150>
+<open file 'G:\yaogong\letor40\baselines\svm_rank\source_code\svm_rank_classify G:\yaogong\letor40\datasets\OHSUMED\Fold1\test.txt G:\yaogong\letor40\baselines\svm_rank\data\OHSUMED\Fold1\best_model G:\yaogong\letor40\baselines\svm_rank\data\OHSUMED\Fold1\test_score', mode 'r' at 0x00000000023F2150>

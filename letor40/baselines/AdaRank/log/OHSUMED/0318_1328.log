@@ -1,0 +1,4 @@
+[03-18 13:28:25]: training starts
+[03-18 13:28:25]: Fold1 starts training
+[03-18 13:28:25]: ROUND 1000
+<open file 'G:\benchmark\learning_to_rank\letor40\baselines\AdaRank\source_code\AdaRank_CSharp.exe train -data G:\benchmark\learning_to_rank\letor40\datasets\OHSUMED\Fold1\train.txt -model G:\benchmark\learning_to_rank\letor40\baselines\AdaRank\data\OHSUMED\model -round 1 -measure MAP', mode 'r' at 0x00000000023A2270>

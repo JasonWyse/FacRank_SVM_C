@@ -1,0 +1,10 @@
+Fold3
+C:1
+
+ ite:100
+
+ eta:1e-06
+
+ col_size:50
+
+ batch_size:10

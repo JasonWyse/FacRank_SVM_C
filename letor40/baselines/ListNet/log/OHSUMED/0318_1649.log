@@ -1,0 +1,8 @@
+[03-18 16:49:17]: training starts
+[03-18 16:49:17]: Fold1 starts training
+[03-18 16:49:17]: ROUND 300
+<open file 'java -jar G:\yaogong\letor40\baselines\ListNet\source_code\RankLib-v2.1\bin\RankLib.jar -train G:\yaogong\letor40\datasets\OHSUMED\Fold1\train.txt -ranker 7 -save G:\yaogong\letor40\baselines\ListNet\data\OHSUMED\model -epoch 100 -lr 0.000010', mode 'r' at 0x0000000002410270>
+<open file 'java -jar G:\yaogong\letor40\baselines\ListNet\source_code\RankLib-v2.1\bin\RankLib.jar -load G:\yaogong\letor40\baselines\ListNet\data\OHSUMED\model -rank G:\yaogong\letor40\datasets\OHSUMED\Fold1\vali.txt -score G:\yaogong\letor40\baselines\ListNet\data\OHSUMED\score', mode 'r' at 0x0000000002410270>
+Error to parse fnFeature at line1:
+lnFea
+

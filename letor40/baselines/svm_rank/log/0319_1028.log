@@ -1,0 +1,9 @@
+pars
+c
+
+<open file 'G:\yaogong\letor40\baselines\svm_struct\source_code\svm_rank_learn -c 0.000010 -e 0.001 -l 1 G:\yaogong\letor40\datasets\OHSUMED\Fold1\train.txt G:\yaogong\letor40\baselines\svm_struct\data\model', mode 'r' at 0x0000000002328150>
+G:\yaogong\letor40\baselines\svm_struct\source_code\svm_rank_learn -c 0.000010 -e 0.001 -l 1 G:\yaogong\letor40\datasets\OHSUMED\Fold1\train.txt G:\yaogong\letor40\baselines\svm_struct\data\model
+<open file 'G:\yaogong\letor40\baselines\svm_struct\source_code\svm_rank_classify G:\yaogong\letor40\datasets\OHSUMED\Fold1\vali.txt G:\yaogong\letor40\baselines\svm_struct\data\model G:\yaogong\letor40\baselines\svm_struct\data\score', mode 'r' at 0x0000000002328150>
+Error to parse fnFeature at line1:
+lnFea
+

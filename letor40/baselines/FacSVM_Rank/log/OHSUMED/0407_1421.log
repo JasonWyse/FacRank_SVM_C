@@ -1,0 +1,5 @@
+pars
+c
+
+<open file 'H:\zhangyaogong\letor40\baselines\FacSVM_Rank\source_code\FacRankSVM_learn -c 50.000000 -C 1.000000 -e 0.000001 -b 10 -i 100 H:\zhangyaogong\letor40\datasets\OHSUMED\Fold1\train.txt H:\zhangyaogong\letor40\baselines\FacSVM_Rank\data\OHSUMED\model', mode 'r' at 0x000000000233A780>
+<open file 'H:\zhangyaogong\letor40\baselines\FacSVM_Rank\source_code\FacRankSVM_predit H:\zhangyaogong\letor40\datasets\OHSUMED\Fold1\vali.txt H:\zhangyaogong\letor40\baselines\FacSVM_Rank\data\OHSUMED\model H:\zhangyaogong\letor40\baselines\FacSVM_Rank\data\OHSUMED\score', mode 'r' at 0x000000000233A780>
