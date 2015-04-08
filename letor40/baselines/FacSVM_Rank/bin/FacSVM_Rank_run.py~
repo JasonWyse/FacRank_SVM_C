@@ -34,6 +34,7 @@ def results(subset,score,p,q,dataset):	#p:'fold%d' q:'['test','vali','train']'
 	
 def validation(msr,dataset):
 	pth_data=p.getPath('path_data')
+	print pth_data
 	pth_dataset=p.getPath('path_dataset')# return the directory of the current dataset we focus on(by type the choice on terminal)
 	score=os.path.join(pth_data,'score')
 	model=os.path.join(pth_data,'model')
@@ -52,32 +53,48 @@ def validation(msr,dataset):
 			os.mkdir(temp_pth_fold)
 		final_best_model = os.path.join(temp_pth_fold,'final_model')
 		#perfms is the value of map or ndcg; Perfms is the best performance, used to choose the best paras
-		Perfms=0	
+		Perfms=0
+		
 		################################different parts for distinct algorithm###################################################	
-		for c in[0.0001,0.001,0.01,0.1,1,10,100]:
-			#for rate in [0.00001,0.0001,0.001,0.01]:
-			#use the "train.txt" file to learn the model
-			print os.popen(command_train%(c,train,model))			
-			print command_train%(c,train,model)
-			
-			#use the "vali.txt" file to get the corresponding score using the learned model
-			print os.popen(command_test%(vali,model,score))
-			#use msr('NDCG' or 'MAP') as measure to get the performance of the model in 'vali.txt' file
-			perfms=tune_paras(vali,score,msr,dataset)
-			if perfms> Perfms:
-				Perfms=perfms
-				C=c
-				#Rate=rate
-				if os.path.isfile(model): 
-					open(final_best_model,"wb").write(open(model,"rb").read()) 				
+		##-c 50 -C 1 -e 1e-6 -s 7 -b 10 -i 100
+		for ite in range(10000,100000,10000):#in[100,200,300,500,1000]:
+			for eta in[1e-6]:#[1e-6,1e-6,1e-6,1e-6,1e-6,1e-6,]
+				for col_size in[20,50]:#[50,100,200,500,1000,5000]
+					for c in[0.01]:#[0.0001,0.001,0.01,0.1,1,10,100]
+						for batch_size in[5000]:#[10,20,50,100,200]
+							#for rate in [0.00001,0.0001,0.001,0.01]:
+							#use the "train.txt" file to learn the model
+							##-c 50 -C 1 -e 1e-6 -b 10 -i 100 train.txt
+							print os.popen(command_train%(col_size,c,eta,batch_size,ite,train,model))			
+													
+							#use the "vali.txt" file to get the corresponding score using the learned model
+							print os.popen(command_test%(vali,model,score))
+							#use msr('NDCG' or 'MAP') as measure to get the performance of the model in 'vali.txt' file
+							perfms=tune_paras(vali,score,msr,dataset)
+							if perfms> Perfms:
+								Perfms=perfms
+								_C=c
+								_ite = ite
+								_eta = eta
+								_col_size = col_size
+								_batch_size = batch_size
+								
+								#Rate=rate
+								if os.path.isfile(model): 
+									open(final_best_model,"wb").write(open(model,"rb").read()) 				
 		F_pars=open(os.path.join(temp_pth_fold,'bestPars'),'w')		
-		F_pars.write('Fold%d\n%s\n'%(fold_number,C))
+		F_pars.write('Fold%d\nC:%s\n'%(fold_number,_C))
+		F_pars.write('\n ite:%s\n'%(_ite))
+		F_pars.write('\n eta:%s\n'%(_eta))
+		F_pars.write('\n col_size:%s\n'%(_col_size))
+		F_pars.write('\n batch_size:%s\n'%(_batch_size))
+		
 		###########################################################################################################################
 		#save the best performance 
 		fold_index='Fold%d'%fold_number		
 		#ipos=0
 		Dict={'test':test,'vali':vali,'train':train}#value 'test', stands for full path of test.txt file,
-		# best_model=os.path.join(temp_pth_fold,'best_model')
+		#best_model=os.path.join(temp_pth_fold,'best_model')
 		# print best_model
 		# print os.popen(command_train%(C,train,best_model))
 		for subset_name in ['test','vali','train']:
@@ -135,9 +152,9 @@ iMaxPosition=10
 dataset=DT.get(raw_input('pls choose dataset(0:Mq2007,1:Mq2008,2:OHSUMED):\n'))
 msr=Msr.get(raw_input('pls choose measure (0:MAP,1:NDCG):\n'))
 
-learn_tools_name='svm_rank_learn'
-classify_tools_name='svm_rank_classify'
-algthm_name='svm_rank'
+learn_tools_name='FacRankSVM_learn'
+classify_tools_name='FacRankSVM_predit'
+algthm_name='FacSVM_Rank'
 	
 p=PathManager(dataset,algthm_name)
 
@@ -167,8 +184,9 @@ Ndcg={}
 
 '''command_train=tls+' train -data %s -model %s -round %d -measure '+str(msr)
 command_test=tls+' test -data %s -model %s -output %s -round %d'''
-
-command_train=tls_learn+' -c %f -e 0.001 -l 1 %s %s'
+#-c 50 -C 1 -e 1e-6 -s 7 -b 10 -i 100 train.txt
+command_train=tls_learn+' -c %f -C %f -e %f -b %d -i %d %s %s'#-c %f -e 0.001 -l 1 %s %s
+#vali.txt train.txt.model result.txt
 command_test=tls_classify+' %s %s %s'
 #message to be logged 	
 

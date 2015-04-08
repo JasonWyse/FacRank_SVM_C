@@ -1,10 +1,10 @@
 Fold3
-C:1
+C:0.01
 
- ite:100
+ ite:40000
 
  eta:1e-06
 
  col_size:50
 
- batch_size:10
+ batch_size:1000

@@ -1,10 +1,10 @@
 Fold2
-C:1
+C:0.01
 
- ite:200
+ ite:20000
 
  eta:1e-06
 
- col_size:50
+ col_size:20
 
- batch_size:10
+ batch_size:1000
